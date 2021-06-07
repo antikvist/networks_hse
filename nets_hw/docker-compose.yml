@@ -1,0 +1,57 @@
+version: "3"
+
+services:
+  server:
+      build:
+          context: server
+      image: nets_hw-server:latest
+      hostname: server
+      ports:
+      - 30
+
+  client:
+      build:
+          context: client
+      image: nets_hw-client:latest
+      hostname: client
+#      network_mode: host
+      ports:
+        - 30
+      depends_on:
+        - server
+
+
+
+#version: "3"
+#
+#
+#services:
+#
+#  server:
+#
+#
+#    build: server/
+#
+#
+#
+#    command: python ./server.py
+#
+#
+#    ports:
+#      - 1234:1234
+#
+#
+#  client:
+#
+#
+#    build: client/
+#
+#
+#    command: python ./client.py
+#
+#
+#    network_mode: host
+#
+#
+#    depends_on:
+#      - server
